@@ -18,13 +18,14 @@ sudo chmod +rwx /mnt/efs/
 # Executando contêineres via Docker Compose
 sudo yum install git -y
 cd /mnt/efs
-git clone https://raw.githubusercontent.com/FabioVerasMachado/tarefa02-WP/refs/heads/main/docker-compose.yml /home/ec2-user/mnt/efs
+git clone https://github.com/FabioVerasMachado/tarefa02-WP.git
+cd tarefa02-WP
+
 # Subir os contêineres
 docker-compose up -d
 
 # adicionar o EFS no fstab
-echo "fs-0cc3a3c08279c9040.efs.us-east-1.amazonaws.com::/ /mnt/efs nfs4 defaults,_netdev,rw  0  0" >> /etc/fstab
+echo "fs-0cc3a3c08279c9040.efs.us-east-1.amazonaws.com:/ /mnt/efs nfs4 defaults,_netdev,rw  0  0" >> /etc/fstab
 # montar o EFS
-sudo umount /mnt/efs
 cd /mnt/efs
 sudo mount -a
