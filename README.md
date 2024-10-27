@@ -3,7 +3,7 @@ Tarefa 02 do Estágio na Compass UOL para AWS
 
 Claro! Aqui está uma versão mais criativa e personalizada do README, com ícones para destacar as seções e torná-lo mais visualmente atraente:
 
-```markdown
+
 # 🚀 Projeto VPC WordPress na AWS
 
 ## 📖 Descrição
