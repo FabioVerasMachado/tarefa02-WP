@@ -1,6 +1,6 @@
 ![Exemplo de imagem](images/CompassUOL.jpeg)
 
-# tarefa02-WP
+# Atividade Docker - AWS SENAC/UNICESUMAR 
 Tarefa 02 do Estágio na Compass UOL para AWS
 
 
