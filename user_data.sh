@@ -18,7 +18,7 @@ sudo chmod +rwx /mnt/efs/
 # Executando contêineres via Docker Compose
 sudo yum install git -y
 cd /mnt/efs
-git clone https://github.com/alexlsilva7/atividade_aws_docker.git /home/ec2-user/atividade_aws_docker
+git clone https://raw.githubusercontent.com/FabioVerasMachado/tarefa02-WP/refs/heads/main/docker-compose.yml /home/ec2-user/mnt/efs
 # Subir os contêineres
 docker-compose up -d
 
