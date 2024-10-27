@@ -165,14 +165,3 @@ Agradeço também aos instrutores da **Compass UOL**, que nos proporcionaram val
 Juntos, conseguimos superar desafios e aprender de forma colaborativa, tornando esta experiência ainda mais enriquecedora. Muito obrigado a todos!
 
 ---
-
-## ⚠️ Observações
-- Certifique-se de ajustar qualquer informação específica ou sensível antes de compartilhar.
-- Mantenha as senhas seguras e evite expô-las em repositórios públicos.
-
-```
-
-### Considerações Finais
-- Essa versão do README é mais visual e envolvente, com ícones para chamar a atenção do leitor.
-- Sinta-se à vontade para personalizar ainda mais, se necessário. Se precisar de mais alguma coisa, estou aqui para ajudar!
-
