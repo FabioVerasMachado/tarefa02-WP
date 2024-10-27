@@ -26,4 +26,5 @@ docker-compose up -d
 echo "IP_OU_DNS_DO_NFS:/ /mnt/nfs nfs defaults 0 0" >> /etc/fstab
 # montar o EFS
 sudo umount /mnt/efs
+cd /mnt/efs
 sudo mount -a
