@@ -163,3 +163,11 @@ Agradeço também aos instrutores da **Compass UOL**, que nos proporcionaram val
 Juntos, conseguimos superar desafios e aprender de forma colaborativa, tornando esta experiência ainda mais enriquecedora. Muito obrigado a todos!
 
 ---
+### 🔗 Referências: 
+
+- Deploy WordPress with Amazon RDS: https://aws.amazon.com/pt/getting-started/hands-on/deploy-wordpress-with-amazon-rds/module-one/
+- WordPress | Docker Official Images: https://hub.docker.com/_/wordpress
+- Amazon EC2 Masterclass (Auto Scaling & Load Balancer): https://udemy.com/course/aws-ec2-masterclass/
+- Deploy Dockerized WordPress with AWS RDS & AWS EFS: https://www.alphabold.com/deploy-dockerized-wordpress-with-aws-rds-aws-efs/
+
+
