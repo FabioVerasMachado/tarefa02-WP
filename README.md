@@ -1,3 +1,5 @@
+![Exemplo de imagem](images/CompassUOL.jpeg)
+
 # tarefa02-WP
 Tarefa 02 do Estágio na Compass UOL para AWS
 
@@ -7,6 +9,7 @@ Tarefa 02 do Estágio na Compass UOL para AWS
 ## 📖 Descrição
 Este projeto implementa uma arquitetura de hospedagem para uma aplicação **WordPress** utilizando a **AWS**. O sistema é configurado em uma **Virtual Private Cloud (VPC)** com sub-redes em diferentes zonas de disponibilidade. A solução inclui **Docker**, **Amazon RDS** para banco de dados, **Amazon EFS** para armazenamento de arquivos estáticos e um **Load Balancer** para gerenciar o tráfego HTTP.
 
+![Exemplo de imagem](images/Atividade02.png)
 ---
 
 ## 📋 Passos de Execução da Tarefa 02 - Docker
@@ -33,6 +36,7 @@ A arquitetura consiste em:
 - **Auto Scaling**: Configuração para monitoramento e substituição automática de instâncias.
 - **Load Balancer**: Distribui o tráfego de entrada e saída via HTTP.
 
+![Exemplo de imagem](images/VPC-wordpress.png)
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -88,7 +92,7 @@ echo "fs-0cc3a3c08279c9040.efs.us-east-1.amazonaws.com:/ /mnt/efs nfs4 defaults,
 cd /mnt/efs
 sudo mount -a
 ```
-
+![Exemplo de imagem](images/user_data.png)
 ### 2. Arquivo `docker-compose.yml`
 Aqui está o conteúdo do arquivo `docker-compose.yml` utilizado para definir os serviços do WordPress e do banco de dados MySQL:
 
@@ -131,11 +135,12 @@ volumes:
 - O serviço de **EFS** será utilizado para armazenar arquivos estáticos do **WordPress**.
 
 ---
+![Exemplo de imagem](images/ArquivosWordpress.png)
+
 
 ## 🔄 Configuração do Load Balancer
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
 - **Importante**: Evitar a exposição do IP público das instâncias. Todo o tráfego externo deve passar pelo Load Balancer.
-
 ---
 
 ## 🗂️ Estrutura do Projeto
@@ -147,11 +152,12 @@ A estrutura do projeto deve seguir o padrão de topologia fornecido, e é recome
 1. Após a configuração, acesse a aplicação WordPress através do **Load Balancer** na porta **80** ou **8080**.
 2. Verifique se a tela de login do WordPress está disponível.
 
+![Exemplo de imagem](images/BemVindoWordpress.png)
 ---
 
 ## 📂 Versionamento
 Todo o código e as configurações devem ser versionados utilizando um repositório **Git**.
-
+![Exemplo de imagem](images/RepositórioGitHub.png)
 ---
 
 ## 🙏 Agradecimentos
@@ -167,7 +173,10 @@ Juntos, conseguimos superar desafios e aprender de forma colaborativa, tornando 
 
 - Deploy WordPress with Amazon RDS: https://aws.amazon.com/pt/getting-started/hands-on/deploy-wordpress-with-amazon-rds/module-one/
 - WordPress | Docker Official Images: https://hub.docker.com/_/wordpress
-- Amazon EC2 Masterclass (Auto Scaling & Load Balancer): https://udemy.com/course/aws-ec2-masterclass/
+- Curso Preparatório para o Exame Oficial atual SAA-C03: https://udemy.com/course/aws-ec2-masterclass](https://compassuol.udemy.com/course/certificacao-amazon-/
+- BootCamp DevOps: https://compassuol.udemy.com/course/devops-bootcamp-trilha-de-aprendizado-rapido-all-in-one
 - Deploy Dockerized WordPress with AWS RDS & AWS EFS: https://www.alphabold.com/deploy-dockerized-wordpress-with-aws-rds-aws-efs/
+- https://github.com/CarolinaSFreitas/Atividade2-Docker/tree/main
+- https://github.com/alexlsilva7/atividade_aws_docker/tree/main
 
-
+![Exemplo de imagem](images/AWS.jpeg)
