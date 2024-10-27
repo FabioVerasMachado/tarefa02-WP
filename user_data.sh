@@ -23,7 +23,7 @@ git clone https://github.com/alexlsilva7/atividade_aws_docker.git /home/ec2-user
 docker-compose up -d
 
 # adicionar o EFS no fstab
-echo "IP_OU_DNS_DO_NFS:/ /mnt/nfs nfs defaults 0 0" >> /etc/fstab
+echo "fs-0cc3a3c08279c9040.efs.us-east-1.amazonaws.com::/ /mnt/efs nfs4 defaults,_netdev,rw  0  0" >> /etc/fstab
 # montar o EFS
 sudo umount /mnt/efs
 cd /mnt/efs
