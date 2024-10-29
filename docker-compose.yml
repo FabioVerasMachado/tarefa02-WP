@@ -8,7 +8,7 @@ services:
       WORDPRESS_DB_HOST: db.cjcqeiask756.us-east-1.rds.amazonaws.com
       WORDPRESS_DB_USER: admin
       WORDPRESS_DB_PASSWORD: favema2190
-      WORDPRESS_DB_NAME: db
+      WORDPRESS_DB_NAME: wordpress
     volumes:
       - /mnt/efs:/var/www/html
 
