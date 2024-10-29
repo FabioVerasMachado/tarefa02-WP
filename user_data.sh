@@ -14,6 +14,7 @@ sudo mv /usr/local/bin/docker-compose /bin/docker-compose
 sudo yum -y install amazon-efs-utils
 sudo mkdir /mnt/efs/
 sudo chmod +rwx /mnt/efs/
+sudo yum install mysql
 
 # Executando contêineres via Docker Compose
 sudo yum install git -y
