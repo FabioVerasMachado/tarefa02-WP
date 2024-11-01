@@ -212,7 +212,7 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 + Para confirmar a montagem do EFS execute `` df -h ``
 
 
-## > ⚠️ **Atenção:
+## > ⚠️ Atenção:
 ## APÓS TODOS OS TESTES NO FINAL DO PROJETO, JÁ É POSSÍVEL DESCARTAR ESSA INSTÂNCIA POIS ELA NÃO FARÁ PARTE DE NOSSA REDE.
 ## *É IMPORTANTE GUARDAR TODOS OS DADOS E ARQUIVOS PARA A CRIAÇÃO DO TEMPLATE QUE SERÁ USADO NO AUTO SCALING.
 
