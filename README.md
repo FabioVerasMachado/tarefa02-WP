@@ -20,13 +20,11 @@ Neste projeto, a arquitetura de rede foi desenhada com foco em segurança e efic
 3. **EC2 Linux AWS 2** - Criar e configurar a instância "CAMICASE";
 4. **RDS** - Criar e configurar o Amazon Relational Database Service;
 5. **EFS** - Criar e configurar Amazon Elastic File System;
-6. **Criação do Template**;
-7. **Auto Scaling**;
+6. **Template** - Como Criar um Template para Auto Scaling no AWS CloudFormation
+7. **Auto Scaling** - Incluir **Load Balance** e incorporação do Template;
 8. **Confirmar todos os procedimentos**, excluir "CAMICASE" e isolar a rede;
-9. **ELB** - Criação do Elastic Load Balancer;
-10. **Ajustes finais...**
-11. **TESTES.**
-
+9. **Ajustes finais...**
+10. **ENTREGA.**
 ---
 
 ## 🌐 Arquitetura
@@ -38,7 +36,6 @@ A arquitetura consiste em:
 - **Auto Scaling**: Configuração para monitoramento e substituição automática de instâncias.
 - **Load Balancer**: Distribui o tráfego de entrada e saída via HTTP.
 
-![Exemplo de imagem](images/VPC-wordpress.png)
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -59,7 +56,24 @@ A arquitetura consiste em:
 
 ## ⚙️ Instalação
 
-## Security Groups Configuração
+# 1- 🌐 Criar e configurar a VPC
+
+Para criar e configurar uma VPC (Virtual Private Cloud) com duas sub-redes públicas, siga os passos abaixo:
+
+1. **Criação da VPC**: No console da AWS, acesse o serviço VPC e selecione a opção para criar uma nova VPC. Defina o intervalo de IPs (CIDR) que atenderá às suas necessidades, por exemplo, 10.0.0.0/16, para permitir uma ampla gama de endereços IP.
+
+2. **Configuração das Sub-redes Públicas**: Dentro da VPC, crie duas sub-redes públicas em zonas de disponibilidade diferentes para garantir alta disponibilidade. Atribua um intervalo de IP menor para cada sub-rede, como 10.0.1.0/24 para a primeira sub-rede e 10.0.2.0/24 para a segunda.
+
+3. **Internet Gateway**: Para fornecer acesso à internet, crie um Internet Gateway e associe-o à VPC. Este recurso é essencial para permitir que instâncias em sub-redes públicas acessem e sejam acessadas pela internet.
+
+4. **Route Table**: Crie uma tabela de rotas e adicione uma rota que direcione o tráfego de saída (0.0.0.0/0) para o Internet Gateway. Associe essa tabela de rotas às sub-redes públicas, garantindo que o tráfego de rede delas possa sair para a internet.
+
+Essas etapas criam uma VPC com duas sub-redes públicas e conectividade externa, permitindo o acesso seguro à internet por meio do Internet Gateway.
+
+
+![Exemplo de imagem](images/VPC-wordpress.png)
+
+## 2- Security Groups Configuração
 
 Abaixo estão os Security Groups configurados para os diferentes serviços do projeto, com suas respectivas regras de entrada e saída para garantir segurança e isolamento adequado na comunicação entre os recursos.
 1. SG-RDS (Security Group para RDS) 📊
@@ -98,7 +112,7 @@ Abaixo estão os Security Groups configurados para os diferentes serviços do pr
 
 
 
-### 1. Configuração da EC2
+### 3- Criação e Configuração da EC2
 Utilize o seguinte script `user_data.sh` para automatizar a configuração das instâncias EC2, incluindo a instalação do Docker e Docker Compose:
 
 ```bash
@@ -135,7 +149,7 @@ cd /mnt/efs
 sudo mount -a
 ```
 ![Exemplo de imagem](images/user_data.png)
-### 2. Arquivo `docker-compose.yml`
+### Arquivo `docker-compose.yml`
 Aqui está o conteúdo do arquivo `docker-compose.yml` utilizado para definir os serviços do WordPress e do banco de dados MySQL:
 
 ```yaml
@@ -171,7 +185,7 @@ volumes:
   db:
 ```
 
-### 3. Deploy do WordPress
+### Deploy do WordPress
 - O **WordPress** será executado em um container **Docker**.
 - A base de dados será provisionada através do **Amazon RDS** com **MySQL**.
 - O serviço de **EFS** será utilizado para armazenar arquivos estáticos do **WordPress**.
@@ -197,7 +211,7 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 
 + Para confirmar a montagem do EFS execute `` df -h `` 
 
-## 🎲 RDS - Criando o Amazon Relational Database Service
+## 🎲 4- RDS - Criando o Amazon Relational Database Service
 
 O RDS armazenará os arquivos do container de WordPress, então antes de partirmos para o acesso na EC2, devemos criar o banco de dados corretamente.
 
@@ -217,7 +231,7 @@ O RDS armazenará os arquivos do container de WordPress, então antes de partirm
 
 + Vá em "Create Database".
 
-## 📂 EFS - Criando o Amazon Elastic File System
+## 📂 5- EFS - Criando o Amazon Elastic File System
 
 O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo corretamente e, em seguida, fazer a montagem no terminal, devemos seguir os seguintes passos:
 
@@ -226,10 +240,26 @@ O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo c
  **Na janela que se abre, escolha o nome do seu volume EFS**
 
  **Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.**
+ 
+ # 📝  6- Como Criar um Template para Auto Scaling no AWS CloudFormation
 
-## 🔄 Configuração do Load Balancer
+Criar um template para Auto Scaling no AWS CloudFormation envolve a definição de recursos essenciais para configurar um grupo de Auto Scaling, um Launch Template e as políticas de escalonamento. Aqui estão os passos básicos:
+
+1. **Definir a Estrutura do Template**: Comece com um arquivo no formato JSON ou YAML. Inclua a seção `Resources` para organizar e detalhar os componentes necessários, como o Auto Scaling Group e o Launch Template.
+
+2. **Adicionar um Launch Template**: No `LaunchTemplate`, defina o tipo de instância EC2 (por exemplo, `t3.micro`) e uma imagem base (AMI). Este template serve como base de configuração para as instâncias que o Auto Scaling irá provisionar.
+
+3. **Configurar o Auto Scaling Group**: O `AutoScalingGroup` é o recurso central que gerencia o ajuste automático de capacidade de instâncias EC2. Nele, configure as sub-redes (`VPCZoneIdentifier`), o tamanho mínimo, máximo e desejado do grupo, além dos parâmetros de propagação de tags nas instâncias criadas.
+
+4. **Adicionar uma Política de Escalonamento**: As políticas de escalonamento, como `ScalingPolicy`, ajudam o grupo de Auto Scaling a decidir quando aumentar ou reduzir a capacidade. Para um ajuste baseado no uso da CPU, use uma política de rastreamento de métricas (`TargetTrackingScaling`), definindo um valor-alvo de utilização, como 50% da CPU.
+
+5. **Validar o Template**: Após definir o template, valide-o no AWS CloudFormation para verificar a integridade da configuração e corrigir eventuais erros de sintaxe.
+
+Seguindo esses passos, você cria um template no AWS CloudFormation que permite configurar automaticamente instâncias EC2 com escalonamento baseado no uso, facilitando o gerenciamento de cargas dinâmicas na AWS.
+   
+## 🔄 7- Configuração do Auto Scaling
+- **Usar o Template Criado com modelo de criação das instâncias** 
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
-- **Importante**: Evitar a exposição do IP público das instâncias.
   
   Todo o tráfego externo deve passar pelo Load Balancer.Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
 --
@@ -238,7 +268,7 @@ A estrutura do projeto deve seguir o padrão de topologia fornecido, e é recome
 
 ---
 
-## 🚀 Execução
+## 🚀 8- Execução
 1. Após a configuração, acesse a aplicação WordPress através do **Load Balancer** na porta **80** ou **8080**.
 2. Verifique se a tela de login do WordPress está disponível.
 
