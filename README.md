@@ -183,6 +183,8 @@ volumes:
 ## 🔄 Configuração do Load Balancer
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
 - **Importante**: Evitar a exposição do IP público das instâncias. Todo o tráfego externo deve passar pelo Load Balancer.
+- 
+Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
 ---
 
 ## 🗂️ Estrutura do Projeto
