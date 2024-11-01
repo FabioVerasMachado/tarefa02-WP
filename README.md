@@ -179,6 +179,63 @@ volumes:
 ---
 ![Exemplo de imagem](images/ArquivosWordpress.png)
 
+## 🗝️ Acessando a EC2 e fazendo configurações
+
+Para fazermos as configurações necessárias na instância EC2 via terminal, devemos seguir os seguintes passos:
+
+1. Confirme que o Docker e o Docker Compose foram instalados com sucessos usando os comandos `` docker ps `` e `` docker-compose --version ``. Apesar desses comandos estarem no shellscript, é sempre bom verificar que as ferramentas estão instaladas corretamente.  
+
+2. O "nfs-utils" também foi instalado durante a inicialização da EC2 através do shellscript de user data, junto a isso foi criado também o caminho para a montagem do seu volume EFS (/mnt/efs/) com as permissões de rwx (leitura, escrita e execução). 
+
+Esse caminho é muito importante e você pode conferir se ele foi criado com sucesso indo até ele com o comando `` cd /mnt/efs/ ``. Com essa confirmação, agora você deve ir novamente no seu console AWS, acessar o serviço de EFS e seguir os seguintes passos:
+
++ Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2
+
++ Na janela aberta selecione "Mount via DNS" e copie o comando de montagem usando o NFS client e cole no terminal da EC2: 
+
+**Não se esqueça de alterar o caminho no final do comando para /mnt/efs/**
+
++ Para confirmar a montagem do EFS execute `` df -h `` 
+
+3. Para automatizar a montagem do volume EFS na sua instância EC2 faça o seguinte:
+
++ Edite o "fstab" com o comando `` nano /etc/fstab ``
+
++ Não exclua a linha que está no arquivo, apenas adicione: `` fs-0e220829bf4606496.efs.us-east-1.amazonaws.com:/    /mnt/efs    nfs4    defaults,_netdev,rw    0   0 ``, mas não se esqueça de alterar o DNS name para o do seu EFS
+
++ Feito isso, salve o arquivo e executa os comandos `` sudo umount /mnt/efs `` e depois `` sudo mount -a `` no terminal
+
++ Para confirmar novamente a montagem do EFS execute `` df -h ``
+
+## 🎲 RDS - Criando o Amazon Relational Database Service
+
+O RDS armazenará os arquivos do container de WordPress, então antes de partirmos para o acesso na EC2, devemos criar o banco de dados corretamente.
+
++ Busque pelo serviço de RDS no console AWS e vá em "Create database"
+
++ Escolha o Engine type como MySQL
+
++ Em "Templates" selecione a opção "Free Tier"
+
++ Dê um nome para a sua instância RDS 
+
++ **Escolha suas credenciais do banco de dados e guarde essas informações (Master username e Master password), pois são informações necessárias para a criação do container de WordPress**
+
++ Na etapa de "Connectivity", escolha o Security Group criado especialmente para o RDS, selecione a mesma AZ que sua EC2 criada está e em "Public access" escolha a opção de sim.
+
++ **Ao fim da criação do RDS, haverá uma etapa chamada "Additional configuration" e nela existe um campo chamado "Initial database name", esse nome também será necessário na criação do container de WordPress**
+
++ Vá em "Create Database".
+
+## 📂 EFS - Criando o Amazon Elastic File System
+
+O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo corretamente e, em seguida, fazer a montagem no terminal, devemos seguir os seguintes passos:
+
++ Busque pelo serviço EFS ainda no console AWS e vá em "Create file system"
+
++ Na janela que se abre, escolha o nome do seu volume EFS
+
++ Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.
 
 ## 🔄 Configuração do Load Balancer
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
