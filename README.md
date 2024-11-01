@@ -4,7 +4,7 @@
 Tarefa 02 do Estágio na Compass UOL para AWS
 
 
-# 🚀 Projeto VPC WordPress na AWS
+># 🚀 Projeto VPC WordPress na AWS
 
 ## 📖 Descrição
 Este projeto implementa uma arquitetura de hospedagem para uma aplicação **WordPress** utilizando a **AWS**. O sistema é configurado em uma **Virtual Private Cloud (VPC)** com sub-redes em diferentes zonas de disponibilidade. A solução inclui **Docker**, **Amazon RDS** para banco de dados, **Amazon EFS** para armazenamento de arquivos estáticos e um **Load Balancer** para gerenciar o tráfego HTTP.
@@ -12,7 +12,7 @@ Este projeto implementa uma arquitetura de hospedagem para uma aplicação **Wor
 ![Exemplo de imagem](images/Atividade02.png)
 ---
 
-## 📋 Passos de Execução da Tarefa 02 - Docker
+>## 📋 Passos de Execução da Tarefa 02 - Docker
 Neste projeto, a arquitetura de rede foi desenhada com foco em segurança e eficiência. Embora o diagrama inclua um pequeno ícone de cadeado nas sub-redes, ele não representa uma rede privada, mas sim a implementação de medidas de proteção contra invasões externas. O tráfego HTTP é direcionado para o balanceador de carga (load balancer), enquanto a comunicação com as instâncias ocorre exclusivamente via protocolo SSH, restrita ao IP da minha máquina. Esse controle garante um isolamento eficaz e segurança aos servidores web, protegendo-os contra acessos não autorizados e reforçando a confiabilidade da rede.
 
 1. **Criar e configurar a VPC**;
@@ -56,7 +56,7 @@ A arquitetura consiste em:
 
 ## ⚙️ Instalação
 
-# 1- 🌐 Criar e configurar a VPC
+># 1- 🌐 Criar e configurar a VPC
 
 Para criar e configurar uma VPC (Virtual Private Cloud) com duas sub-redes públicas, siga os passos abaixo:
 
@@ -73,7 +73,7 @@ Essas etapas criam uma VPC com duas sub-redes públicas e conectividade externa,
 
 ![Exemplo de imagem](images/Rede.png)
 
-# 2- Security Groups Configuração
+># 2- Security Groups Configuração
 
 ![Exemplo de imagem](images/SecurityGroupEC2.png)
 
@@ -121,7 +121,7 @@ Abaixo estão os Security Groups configurados para os diferentes serviços do pr
 
 
 
-# 3- Criação e Configuração da EC2
+># 3- Criação e Configuração da EC2
 Utilize o seguinte script `user_data.sh` para automatizar a configuração das instâncias EC2, incluindo a instalação do Docker e Docker Compose:
 
 ```bash
@@ -227,8 +227,8 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 
 >**É IMPORTANTE GUARDAR TODOS OS DADOS E ARQUIVOS PARA A CRIAÇÃO DO TEMPLATE QUE SERÁ USADO NO AUTO SCALING.**
 
-
-# 🎲 4- RDS - Criando o Amazon Relational Database Service
+---
+># 🎲 4- RDS - Criando o Amazon Relational Database Service
 
 O RDS armazenará os arquivos do container de WordPress, então antes de partirmos para o acesso na EC2, devemos criar o banco de dados corretamente.
 
@@ -248,7 +248,7 @@ O RDS armazenará os arquivos do container de WordPress, então antes de partirm
 
 + Vá em "Create Database".
 
-# 📂 5- EFS - Criando o Amazon Elastic File System
+># 📂 5- EFS - Criando o Amazon Elastic File System
 
 O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo corretamente e, em seguida, fazer a montagem no terminal, devemos seguir os seguintes passos:
 
@@ -258,7 +258,7 @@ O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo c
 
  **Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.**
  
-# 📝  6- Como Criar um Template para Auto Scaling no AWS CloudFormation
+># 📝  6- Como Criar um Template para Auto Scaling no AWS CloudFormation
 
 Criar um template para Auto Scaling no AWS CloudFormation envolve a definição de recursos essenciais para configurar um grupo de Auto Scaling, um Launch Template e as políticas de escalonamento. Aqui estão os passos básicos:
 
@@ -270,18 +270,18 @@ Criar um template para Auto Scaling no AWS CloudFormation envolve a definição 
 
 4. **Adicionar uma Política de Escalonamento**: As políticas de escalonamento, como `ScalingPolicy`, ajudam o grupo de Auto Scaling a decidir quando aumentar ou reduzir a capacidade. Para um ajuste baseado no uso da CPU, use uma política de rastreamento de métricas (`TargetTrackingScaling`), definindo um valor-alvo de utilização, como 50% da CPU.
 
-5. **Validar o Template**: Após definir o template, valide-o no AWS CloudFormation para verificar a integridade da configuração e corrigir eventuais erros de sintaxe.
+>5. **Validar o Template**: Após definir o template, valide-o no AWS CloudFormation para verificar a integridade da configuração e corrigir eventuais erros de sintaxe.
 
 Seguindo esses passos, você cria um template no AWS CloudFormation que permite configurar automaticamente instâncias EC2 com escalonamento baseado no uso, facilitando o gerenciamento de cargas dinâmicas na AWS.
    
-# 🔄 7- Configuração do Auto Scaling
+># 🔄 7- Configuração do Auto Scaling
 - **Usar o Template Criado como modelo de criação das instâncias** 
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
   
   Todo o tráfego externo deve passar pelo Load Balancer.Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
 --
 
-# 🚀 8- Execução
+># 🚀 8- Execução
 1. Após a configuração, acesse a aplicação WordPress através do **Load Balancer** na porta **80** ou **8080**.
 2. Verifique se a tela de login do WordPress está disponível.
 
