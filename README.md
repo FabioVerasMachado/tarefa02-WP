@@ -75,7 +75,7 @@ Essas etapas criam uma VPC com duas sub-redes públicas e conectividade externa,
 
 ## 2- Security Groups Configuração
 
-![Exemplo de imagem](images/SecurityGroup.png)
+![Exemplo de imagem](images/SecurityGroupEC2.png)
 
 
 Abaixo estão os Security Groups configurados para os diferentes serviços do projeto, com suas respectivas regras de entrada e saída para garantir segurança e isolamento adequado na comunicação entre os recursos.
