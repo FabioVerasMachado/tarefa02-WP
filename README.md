@@ -71,9 +71,12 @@ Para criar e configurar uma VPC (Virtual Private Cloud) com duas sub-redes públ
 Essas etapas criam uma VPC com duas sub-redes públicas e conectividade externa, permitindo o acesso seguro à internet por meio do Internet Gateway.
 
 
-![Exemplo de imagem](images/VPC-wordpress.png)
+![Exemplo de imagem](images/Rede.png)
 
 ## 2- Security Groups Configuração
+
+![Exemplo de imagem](images/SecurityGroup.png)
+
 
 Abaixo estão os Security Groups configurados para os diferentes serviços do projeto, com suas respectivas regras de entrada e saída para garantir segurança e isolamento adequado na comunicação entre os recursos.
 1. SG-RDS (Security Group para RDS) 📊
@@ -269,16 +272,14 @@ Seguindo esses passos, você cria um template no AWS CloudFormation que permite 
   
   Todo o tráfego externo deve passar pelo Load Balancer.Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
 --
-## 🗂️ Estrutura do Projeto
-A estrutura do projeto deve seguir o padrão de topologia fornecido, e é recomendável utilizar `Dockerfile` ou `Docker Compose` conforme a preferência do desenvolvedor.
-
----
 
 ## 🚀 8- Execução
 1. Após a configuração, acesse a aplicação WordPress através do **Load Balancer** na porta **80** ou **8080**.
 2. Verifique se a tela de login do WordPress está disponível.
 
 ![Exemplo de imagem](images/BemVindoWordpress.png)
+![Exemplo de imagem](images/SiteWordpress.png)
+
 ---
 
 ## 📂 Versionamento
