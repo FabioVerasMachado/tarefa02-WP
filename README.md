@@ -17,12 +17,12 @@ Neste projeto, a arquitetura de rede foi desenhada com foco em segurança e efic
 
 1. **Criar e configurar a VPC**;
 2. **Security Groups** - Criação;
-3. **EC2 Linux AWS 2** - Criar e configurar a instância "CAMICASE";
+3. **EC2 Linux AWS 2** - Criar e configurar a instância "CAMICASE" que servirá para testes e criação do Template;
 4. **RDS** - Criar e configurar o Amazon Relational Database Service;
 5. **EFS** - Criar e configurar Amazon Elastic File System;
 6. **Template** - Como Criar um Template para Auto Scaling no AWS CloudFormation
 7. **Auto Scaling** - Incluir **Load Balance** e incorporação do Template;
-8. **Confirmar todos os procedimentos**, excluir "CAMICASE" e isolar a rede;
+8. **Confirmar todos os procedimentos**;
 9. **Ajustes finais...**
 10. **ENTREGA.**
 ---
@@ -209,7 +209,11 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 
 **Não se esqueça de alterar o caminho no final do comando para /mnt/efs/**
 
-+ Para confirmar a montagem do EFS execute `` df -h `` 
++ Para confirmar a montagem do EFS execute `` df -h ``
+
+## > ⚠️ **Atenção:
+## APÓS TODOS OS TESTES, JÁ É POSSÍVEL DESCARTAR ESSA INSTÂNCIA POIS ELA NÃO FARÁ PARTE DE NOSSA REDE.
+## *É IMPORTANTE GUARDAR TODOS OS DADOS E ARQUIVOS PARA A CRIAÇÃO DO TEMPLATE QUE SERÁ USADO NO AUTO SCALING.
 
 ## 🎲 4- RDS - Criando o Amazon Relational Database Service
 
