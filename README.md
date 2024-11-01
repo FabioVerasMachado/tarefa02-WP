@@ -214,12 +214,19 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 
 + Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2. **(DEPOIS QUE O EFS ESTÁ INSTALADO)**.
 
-+ Na janela aberta selecione "Mount via DNS" e copie o comando de montagem usando o NFS client e cole no terminal da EC2: 
+## Montar o EFS
 
-**Não se esqueça de alterar o caminho no final do comando para /mnt/efs/**
+Obtenha o DNS do sistema de arquivos EFS no console do Amazon EFS.
 
-+ Para confirmar a montagem do EFS execute `` df -h ``
+Para montar o EFS, use o comando "sudo mount -t nfs -o nfsvers=4.1 <dns-do-efs>:/ /mnt/efs" no terminal. Substitua "<dns-do-efs>" pelo DNS do seu EFS.
 
++ Observação: Certifique-se de usar o caminho "/mnt/efs/" no final do comando.
+
+### Verificar a Montagem
+
+Para confirmar se o EFS foi montado corretamente, execute o comando "df -h".
+
+![Exemplo de imagem](images/MontagemEFS.png)
 
 ## > ⚠️ Atenção:
 
@@ -247,6 +254,42 @@ O RDS armazenará os arquivos do container de WordPress, então antes de partirm
 + **Ao fim da criação do RDS, haverá uma etapa chamada "Additional configuration" e nela existe um campo chamado "Initial database name", esse nome também será necessário na criação do container de WordPress**
 
 + Vá em "Create Database".
+
+## 📚 Instruções para Conexão e Criação do Banco de Dados no Amazon RDS
+
+### 1- Conectar ao Banco de Dados RDS
+
+Para se conectar ao seu banco de dados RDS, siga estas etapas:
+
+- **Obtenha o Endpoint da Instância RDS**: 
+  - Você pode encontrar o endpoint da sua instância no console do Amazon RDS.
+
+- **Conectar-se ao MySQL**:
+  - Execute o seguinte comando no terminal, substituindo `<endpoint-do-rds>` pelo endpoint da sua instância:
+
+    ```bash
+    mysql -h <endpoint-do-rds> -u admin -p
+    ```
+
+- **Inserir Senha**:
+  - Quando solicitado, insira a senha que você configurou para o usuário `admin`.
+
+### 2- Criar o Banco de Dados WordPress
+
+Após conectar-se ao MySQL, siga estes passos para criar o banco de dados WordPress:
+
+- **Execute os seguintes comandos**:
+
+    ```sql
+    -- Criar o banco de dados WordPress
+    CREATE DATABASE wordpress;
+
+    -- Verificar se o banco de dados foi criado
+    SHOW DATABASES;
+    ```
+
+
+
 
 ># 📂 5- EFS - Criando o Amazon Elastic File System
 
