@@ -189,23 +189,13 @@ Para fazermos as configurações necessárias na instância EC2 via terminal, de
 
 Esse caminho é muito importante e você pode conferir se ele foi criado com sucesso indo até ele com o comando `` cd /mnt/efs/ ``. Com essa confirmação, agora você deve ir novamente no seu console AWS, acessar o serviço de EFS e seguir os seguintes passos:
 
-+ Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2
++ Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2 (DEPOIS QUE O EFS ESTÁ INSTALADO).
 
 + Na janela aberta selecione "Mount via DNS" e copie o comando de montagem usando o NFS client e cole no terminal da EC2: 
 
 **Não se esqueça de alterar o caminho no final do comando para /mnt/efs/**
 
 + Para confirmar a montagem do EFS execute `` df -h `` 
-
-3. Para automatizar a montagem do volume EFS na sua instância EC2 faça o seguinte:
-
-+ Edite o "fstab" com o comando `` nano /etc/fstab ``
-
-+ Não exclua a linha que está no arquivo, apenas adicione: `` fs-0e220829bf4606496.efs.us-east-1.amazonaws.com:/    /mnt/efs    nfs4    defaults,_netdev,rw    0   0 ``, mas não se esqueça de alterar o DNS name para o do seu EFS
-
-+ Feito isso, salve o arquivo e executa os comandos `` sudo umount /mnt/efs `` e depois `` sudo mount -a `` no terminal
-
-+ Para confirmar novamente a montagem do EFS execute `` df -h ``
 
 ## 🎲 RDS - Criando o Amazon Relational Database Service
 
@@ -232,10 +222,10 @@ O RDS armazenará os arquivos do container de WordPress, então antes de partirm
 O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo corretamente e, em seguida, fazer a montagem no terminal, devemos seguir os seguintes passos:
 
 + Busque pelo serviço EFS ainda no console AWS e vá em "Create file system"
+ 
+## Na janela que se abre, escolha o nome do seu volume EFS
 
-+ Na janela que se abre, escolha o nome do seu volume EFS
-
-+ Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.
+## a lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.
 
 ## 🔄 Configuração do Load Balancer
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
