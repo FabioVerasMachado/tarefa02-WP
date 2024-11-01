@@ -258,7 +258,7 @@ Criar um template para Auto Scaling no AWS CloudFormation envolve a definição 
 Seguindo esses passos, você cria um template no AWS CloudFormation que permite configurar automaticamente instâncias EC2 com escalonamento baseado no uso, facilitando o gerenciamento de cargas dinâmicas na AWS.
    
 ## 🔄 7- Configuração do Auto Scaling
-- **Usar o Template Criado com modelo de criação das instâncias** 
+- **Usar o Template Criado como modelo de criação das instâncias** 
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
   
   Todo o tráfego externo deve passar pelo Load Balancer.Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
