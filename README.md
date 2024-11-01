@@ -13,6 +13,8 @@ Este projeto implementa uma arquitetura de hospedagem para uma aplicação **Wor
 ---
 
 ## 📋 Passos de Execução da Tarefa 02 - Docker
+Neste projeto, a arquitetura de rede foi desenhada com foco em segurança e eficiência. Embora o diagrama inclua um pequeno ícone de cadeado nas sub-redes, ele não representa uma rede privada, mas sim a implementação de medidas de proteção contra invasões externas. O tráfego HTTP é direcionado para o balanceador de carga (load balancer), enquanto a comunicação com as instâncias ocorre exclusivamente via protocolo SSH, restrita ao IP da minha máquina. Esse controle garante um isolamento eficaz e segurança aos servidores web, protegendo-os contra acessos não autorizados e reforçando a confiabilidade da rede.
+
 1. **Criar e configurar a VPC**;
 2. **Security Groups** - Criação;
 3. **EC2 Linux AWS 2** - Criar e configurar a instância "CAMICASE";
@@ -56,6 +58,46 @@ A arquitetura consiste em:
 ---
 
 ## ⚙️ Instalação
+
+## Security Groups Configuração
+
+Abaixo estão os Security Groups configurados para os diferentes serviços do projeto, com suas respectivas regras de entrada e saída para garantir segurança e isolamento adequado na comunicação entre os recursos.
+1. SG-RDS (Security Group para RDS) 📊
+
+    Inbound Rules
+        MySQL/Aurora (Porta 3306) - Source: EC2 Security Group
+
+    Outbound Rules
+        Todo o Tráfego (0.0.0.0/0)
+
+2. SG-EFS (Security Group para EFS) 🗄️
+
+    Inbound Rules
+        NFS (Porta 2049) - Source: EC2 Security Group
+
+    Outbound Rules
+        Todo o Tráfego (0.0.0.0/0)
+
+3. SG-EC2 (Security Group para EC2) 💻
+
+    Inbound Rules
+        HTTP (Porta 80) - Source: Load Balancer Security Group
+        SSH (Porta 22) - Source: Seu IP
+
+    Outbound Rules
+        Todo o Tráfego (0.0.0.0/0)
+
+4. SG-LoadBalance (Security Group para o Load Balancer) ⚖️
+
+    Inbound Rules
+        HTTP (Porta 80) - Source: 0.0.0.0/0
+        HTTPS (Porta 443) - Source: 0.0.0.0/0
+
+    Outbound Rules
+        Todo o Tráfego (0.0.0.0/0)
+
+
+
 ### 1. Configuração da EC2
 Utilize o seguinte script `user_data.sh` para automatizar a configuração das instâncias EC2, incluindo a instalação do Docker e Docker Compose:
 
