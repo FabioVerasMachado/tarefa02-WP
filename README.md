@@ -189,7 +189,7 @@ Para fazermos as configurações necessárias na instância EC2 via terminal, de
 
 Esse caminho é muito importante e você pode conferir se ele foi criado com sucesso indo até ele com o comando `` cd /mnt/efs/ ``. Com essa confirmação, agora você deve ir novamente no seu console AWS, acessar o serviço de EFS e seguir os seguintes passos:
 
-+ Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2 (DEPOIS QUE O EFS ESTÁ INSTALADO).
++ Selecione o seu volume EFS e clique em "Attach" para atachar o volume na sua EC2. **(DEPOIS QUE O EFS ESTÁ INSTALADO)**.
 
 + Na janela aberta selecione "Mount via DNS" e copie o comando de montagem usando o NFS client e cole no terminal da EC2: 
 
@@ -223,17 +223,16 @@ O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo c
 
 + Busque pelo serviço EFS ainda no console AWS e vá em "Create file system"
  
-## Na janela que se abre, escolha o nome do seu volume EFS
+ **Na janela que se abre, escolha o nome do seu volume EFS**
 
-## a lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.
+ **Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.**
 
 ## 🔄 Configuração do Load Balancer
 - Um **Load Balancer Classic** será configurado para gerenciar o tráfego HTTP.
 - **Importante**: Evitar a exposição do IP público das instâncias.
   
   Todo o tráfego externo deve passar pelo Load Balancer.Um Load Balancer Classic será configurado para gerenciar o tráfego HTTP, distribuindo-o uniformemente entre as instâncias. A segurança da rede é garantida através dos Security Groups, que controlam rigorosamente o acesso a cada serviço. No Security Group da instância, é feita a configuração que permite o apontamento do tráfego HTTP proveniente do Load Balancer, garantindo que o tráfego externo passe primeiro pelo balanceador de carga antes de acessar as instâncias. Além disso, a comunicação direta com as instâncias é restrita ao protocolo SSH, configurado para aceitar conexões apenas de um IP específico, proporcionando isolamento e segurança adicionais aos servidores web. Essa configuração previne acessos não autorizados, reforçando a confiabilidade da rede e a proteção dos dados.
----
-
+--
 ## 🗂️ Estrutura do Projeto
 A estrutura do projeto deve seguir o padrão de topologia fornecido, e é recomendável utilizar `Dockerfile` ou `Docker Compose` conforme a preferência do desenvolvedor.
 
