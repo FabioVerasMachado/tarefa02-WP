@@ -82,36 +82,36 @@ Abaixo estão os Security Groups configurados para os diferentes serviços do pr
 1. SG-RDS (Security Group para RDS) 📊
 
     Inbound Rules
-        MySQL/Aurora (Porta 3306) - Source: EC2 Security Group
+        + MySQL/Aurora (Porta 3306) - Source: EC2 Security Group
 
     Outbound Rules
-        Todo o Tráfego (0.0.0.0/0)
+        + Todo o Tráfego (0.0.0.0/0)
 
 2. SG-EFS (Security Group para EFS) 🗄️
 
     Inbound Rules
-        NFS (Porta 2049) - Source: EC2 Security Group
+        + NFS (Porta 2049) - Source: EC2 Security Group
 
     Outbound Rules
-        Todo o Tráfego (0.0.0.0/0)
+        + Todo o Tráfego (0.0.0.0/0)
 
 3. SG-EC2 (Security Group para EC2) 💻
 
     Inbound Rules
-        HTTP (Porta 80) - Source: Load Balancer Security Group
-        SSH (Porta 22) - Source: Seu IP
+        + HTTP (Porta 80) - Source: Load Balancer Security Group
+        + SSH (Porta 22) - Source: Seu IP
 
     Outbound Rules
-        Todo o Tráfego (0.0.0.0/0)
+        + Todo o Tráfego (0.0.0.0/0)
 
 4. SG-LoadBalance (Security Group para o Load Balancer) ⚖️
 
     Inbound Rules
-        HTTP (Porta 80) - Source: 0.0.0.0/0
-        HTTPS (Porta 443) - Source: 0.0.0.0/0
+        + HTTP (Porta 80) - Source: 0.0.0.0/0
+        + HTTPS (Porta 443) - Source: 0.0.0.0/0
 
     Outbound Rules
-        Todo o Tráfego (0.0.0.0/0)
+        + Todo o Tráfego (0.0.0.0/0)
 
 
 
