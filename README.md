@@ -285,7 +285,7 @@ Seguindo esses passos, você cria um template no AWS CloudFormation que permite 
 1. Após a configuração, acesse a aplicação WordPress através do **Load Balancer** na porta **80** ou **8080**.
 2. Verifique se a tela de login do WordPress está disponível.
 
-![Exemplo de imagem](images/BemVindoWordpress.png)
+
 ![Exemplo de imagem](images/SiteWordpress.png)
 
 ---
