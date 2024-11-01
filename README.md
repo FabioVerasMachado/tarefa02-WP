@@ -241,7 +241,7 @@ O EFS armazenará os arquivos estáticos do WordPress. Portanto, para criá-lo c
 
  **Na lista de "File systems" clique no nome do seu EFS e vá na seção "Network". Nessa parte vá no botão "Manage" e altere o SG para o que criamos no início especificamente para o EFS.**
  
- # 📝  6- Como Criar um Template para Auto Scaling no AWS CloudFormation
+  📝  **6- Como Criar um Template para Auto Scaling no AWS CloudFormation**
 
 Criar um template para Auto Scaling no AWS CloudFormation envolve a definição de recursos essenciais para configurar um grupo de Auto Scaling, um Launch Template e as políticas de escalonamento. Aqui estão os passos básicos:
 
