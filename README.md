@@ -210,7 +210,7 @@ Esse caminho é muito importante e você pode conferir se ele foi criado com suc
 **Não se esqueça de alterar o caminho no final do comando para /mnt/efs/**
 
 + Para confirmar a montagem do EFS execute `` df -h ``
-+ 
+
 
 ## > ⚠️ **Atenção:
 ## APÓS TODOS OS TESTES, JÁ É POSSÍVEL DESCARTAR ESSA INSTÂNCIA POIS ELA NÃO FARÁ PARTE DE NOSSA REDE.
